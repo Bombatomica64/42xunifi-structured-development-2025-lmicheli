@@ -51,7 +51,7 @@ char *getLast(PasswordHistory *self)
 	if (!self)
 		return NULL;
 
-	char *last;
+	char *last = NULL;
 	for (int i = 0; self->old_passwords[i]; i++)
 		last = self->old_passwords[i];
 
