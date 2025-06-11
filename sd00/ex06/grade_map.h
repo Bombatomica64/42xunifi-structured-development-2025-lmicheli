@@ -8,7 +8,7 @@
 
 typedef struct grade_map
 {
-	char *grade[101];
+	char *grade[102];
 	char *(*get_grade)(int score, struct grade_map mapper);
 
 } GradeMapper;
