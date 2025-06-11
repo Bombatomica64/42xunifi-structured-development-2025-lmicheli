@@ -6,6 +6,43 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef enum
+{
+	PG,
+	PG13,
+	R,
+	NC17,
+} Rating;
+
+typedef struct Preferences
+{
+	char *username;
+	char **genre;
+} Preferences;
+
+typedef struct Movie
+{
+	char *title;
+	int year;
+	int duration;
+	int stars;
+	Rating movie_rating;
+	char *director;
+	char **actors;
+	char *genre;
+} Movie;
+
+typedef struct MovieList
+{
+	Movie *movies;
+	int size;
+} MovieList;
+
+typedef struct Plan
+{
+	char *username;
+	Movie *movie;
+} Plan;
 
 // Returns user preferences. Returns NULL on failure.
 struct Preferences *get_user_preferences(void); // { 'lollo', 'horror', next* }
