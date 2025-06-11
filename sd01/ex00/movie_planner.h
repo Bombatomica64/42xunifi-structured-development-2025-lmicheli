@@ -18,6 +18,7 @@ typedef struct Preferences
 {
 	char *username;
 	char **genre;
+	struct Preferences *next;
 } Preferences;
 
 typedef struct Movie
@@ -40,12 +41,11 @@ typedef struct MovieList
 
 typedef struct Plan
 {
-	char *username;
 	Movie *movie;
 } Plan;
 
 // Returns user preferences. Returns NULL on failure.
-struct Preferences *get_user_preferences(void); // { 'lollo', 'horror', next* }
+struct Preferences *get_user_preferences(void);
 // Returns a list of movies matching the given preferences. Returns NULL on failure.
 struct MovieList *find_movies(struct Preferences *prefs);
 // Returns a movie night plan from the given list. Returns NULL on failure.

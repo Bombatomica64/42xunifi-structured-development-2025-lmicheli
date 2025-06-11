@@ -2,12 +2,10 @@
 
 struct Plan *create_movie_night_plan(void)
 {
-	// Get user preferences (you don't need to know the internal structure)
 	struct Preferences *prefs = get_user_preferences();
 	if (!prefs)
 		return NULL;
 
-	// Find movies (you don't need to know MovieList internals)
 	struct MovieList *movies = find_movies(prefs);
 	if (!movies)
 	{
@@ -20,7 +18,6 @@ struct Plan *create_movie_night_plan(void)
 		return NULL;
 	}
 
-	// Build plan (you don't need to know Plan internals)
 	struct Plan *plan = build_plan(movies);
 	if (!plan)
 	{
