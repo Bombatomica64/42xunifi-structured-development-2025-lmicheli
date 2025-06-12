@@ -52,7 +52,4 @@ struct Playlist *create_playlist(void)
 		free_filter_settings(filters);
 		return playlist;
 	}
-	free_mood_settings(mood);
-	free_filter_settings(filters);
-	return NULL;
 }
