@@ -71,7 +71,7 @@ FSNode *get_sibling(const FSNode *node)
 	if (!node || !node->parent)
 		return NULL;
 
-	FSNode *parent = node->parent;
+	const FSNode *parent = node->parent;
 
 	for (int i = 0; i < parent->childCount; i++)
 	{

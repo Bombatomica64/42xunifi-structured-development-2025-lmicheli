@@ -1,6 +1,8 @@
 #include "critical_windows.h"
 
-static bool isCritical(int arr[5])
+// This function checks if a given array of 5 integers represents a critical condition.
+// It returns 1 if the condition is critical, otherwise it returns 0.
+static int isCritical(const int arr[5])
 {
 	int strikes = 0;
 	int average = 0;
@@ -8,7 +10,7 @@ static bool isCritical(int arr[5])
 	for (int i = 0; i < 5; i++)
 	{
 		if (arr[i] > 150)
-			return false;
+			return 0;
 		if (arr[i] >= 70)
 			strikes++;
 		average += arr[i];
