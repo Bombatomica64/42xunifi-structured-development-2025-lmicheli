@@ -27,7 +27,7 @@ static void resize_entries_impl(GradeNode *self)
 	self->capacity = new_capacity;
 }
 
-void insert(GradeNode *self, char *grade)
+void insert(GradeNode *self, const char *grade)
 {
 	if (!self || !grade)
 		return;
@@ -56,6 +56,7 @@ void insert(GradeNode *self, char *grade)
 		self->size++;
 	}
 }
+
 GradeNode *compute_distribution(const char **mapped_grades, int size)
 {
 	GradeNode *computed = malloc(sizeof(GradeNode));
@@ -78,7 +79,7 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
 	for (int i = 0; i < size; i++)
 	{
 		if (mapped_grades[i])
-			insert(computed, (char *)mapped_grades[i]);
+			insert(computed, mapped_grades[i]);
 	}
 
 	return computed;
@@ -99,37 +100,37 @@ void free_distribution(GradeNode *head)
 
 void print_distribution(GradeNode *head)
 {
-    if (!head || !head->entries)
-        return;
+	if (!head || !head->entries)
+		return;
 
-    int maxCount = head->maxCount;
+	int maxCount = head->maxCount;
 	printf("Grade Distribution:\n");
-    
-    for (int row = maxCount; row >= 1; row--)
-    {
-        printf("%2d |", row);
-        
-        for (int i = 0; i < head->size; i++)
-        {
-            if (head->entries[i].count >= row)
-                printf(" [*]");
-            else
-                printf(" [ ]");
-        }
-        printf("\n");
-    }
-    
-    printf("   +");
-    for (int i = 0; i < head->size; i++)
-    {
-        printf("----");
-    }
-    printf("\n");
 
-    printf("   ");
-    for (int i = 0; i < head->size; i++)
-    {
-        printf(" %3.2s", head->entries[i].grade);
-    }
-    printf("\n");
+	for (int row = maxCount; row >= 1; row--)
+	{
+		printf("%2d |", row);
+
+		for (int i = 0; i < head->size; i++)
+		{
+			if (head->entries[i].count >= row)
+				printf(" [*]");
+			else
+				printf(" [ ]");
+		}
+		printf("\n");
+	}
+
+	printf("   +");
+	for (int i = 0; i < head->size; i++)
+	{
+		printf("----");
+	}
+	printf("\n");
+
+	printf("   ");
+	for (int i = 0; i < head->size; i++)
+	{
+		printf(" %3.2s", head->entries[i].grade);
+	}
+	printf("\n");
 }

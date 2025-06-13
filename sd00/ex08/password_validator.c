@@ -77,7 +77,7 @@ static PwStatus check_similarity_with_history(const char *new_pw, PasswordHistor
 	return VALID;
 }
 
-static bool all_requirements_met(bool *flags)
+static bool all_requirements_met(const bool flags[5])
 {
 	return flags[0] && flags[1] && flags[2] && flags[3] && flags[4];
 }
