@@ -46,7 +46,7 @@ struct ScheduleResult *schedule_tasks(struct TaskList *tasks)
 	for (int i = 0; i < priorities->size && i < core_count; i++)
 	{
 		int task_id = select_best_task_for_current_priorities(profile, priorities);
-		Task *task = tasks->get_task(tasks, task_id);
+		const Task *task = tasks->get_task(tasks, task_id);
 		if (task->core_id < 0 || task->core_id >= core_count)
 		{
 			free_priority_map(priorities);
