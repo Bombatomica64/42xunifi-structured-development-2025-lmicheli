@@ -1,6 +1,6 @@
 #include "task_scheduler.h"
 
-static Task *get_task_by_id(struct TaskList *self, int id)
+static Task *get_task(struct TaskList *self, int id)
 {
 	if (id < 0 || id >= self->size)
 	{
