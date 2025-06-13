@@ -18,12 +18,3 @@ float average(const int *array, int size)
 	}
 	return averageRet / validCount;
 }
-
-// int main(void)
-// {
-// 	int size = 5;
-// 	int array[] = {10, 20, 30, 500, 50};
-// 	float avg = average(array, size);
-// 	printf("Average: %f\n", avg);
-// 	return 0;
-// }

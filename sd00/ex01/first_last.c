@@ -20,16 +20,3 @@ void first_last(int arr[], int size, int target, int *first, int *last)
 		right--;
 	}
 }
-
-// int main(void)
-// {
-// 	int arr[] = {1, 2, 3, 3, 5};
-// 	int size = sizeof(arr) / sizeof(arr[0]);
-// 	int target = 3;
-// 	int first, last;
-
-// 	first_last(arr, size, target, &first, &last);
-
-// 	printf("First: %d, Last: %d\n", first, last);
-// 	return 0;
-// }

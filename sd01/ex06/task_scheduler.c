@@ -1,5 +1,15 @@
 #include "task_scheduler.h"
 
+static Task *get_task_by_id(struct TaskList *self, int id)
+{
+	if (id < 0 || id >= self->size)
+	{
+		return NULL; // Invalid task ID
+	}
+	return &self->tasks[id];
+}
+
+
 struct ScheduleResult *schedule_tasks(struct TaskList *tasks)
 {
 	if (!tasks || tasks->size == 0)
@@ -33,18 +43,18 @@ struct ScheduleResult *schedule_tasks(struct TaskList *tasks)
 		free_task_profile(profile);
 		return NULL; // Failed to create schedule result
 	}
-	for (int i = 0; i < priorities->size; i++)
+	for (int i = 0; i < priorities->size && i < core_count; i++)
 	{
-		Task *task = &priorities->tasks[i];
-		int core_id = select_best_task(profile);
-		if (core_id < 0)
+		int task_id = select_best_task_for_current_priorities(profile, priorities);
+		Task *task = tasks->get_task(tasks, task_id);
+		if (task->core_id < 0 || task->core_id >= core_count)
 		{
 			free_priority_map(priorities);
 			free_task_profile(profile);
-			free_schedule_result(result);
-			return NULL; // Failed to select a task
+			free_loadinfo(profile->load);
+			return NULL; // Invalid core ID
 		}
-		update_schedule_entry(result, core_id, task->id);
+		update_schedule_entry(result, task->core_id, task->id);
 	}
 	free_priority_map(priorities);
 	free_task_profile(profile);

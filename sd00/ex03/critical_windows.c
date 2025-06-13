@@ -38,10 +38,3 @@ int count_critical_windows(const int *readings, int size)
 
 	return ret;
 }
-
-// int main()
-// {
-// 	int arr[] = {70, 70, 60, 130, 50, 150, 170, 3, 90, 3, 4};
-// 	printf("output: %d\n", count_critical_windows(arr, 11));
-// 	return (0);
-// }

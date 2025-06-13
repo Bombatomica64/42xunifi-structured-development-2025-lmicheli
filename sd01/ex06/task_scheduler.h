@@ -30,8 +30,8 @@ typedef struct TaskProfile
 } TaskProfile;
 typedef struct PriorityMap
 {
-	Task *tasks;	 // Array of tasks sorted by priority
-	int size;		 // Number of tasks in the priority map
+	Task *tasks; // Array of tasks sorted by priority
+	int size;	 // Number of tasks in the priority map
 } PriorityMap;
 typedef struct ScheduleResult
 {
@@ -46,7 +46,7 @@ struct PriorityMap *compute_priorities_mock(struct TaskProfile *profile);
 // Return the number of available CPU cores.
 int get_available_core_count(void);
 // Select the best task to assign next based on the profile. Returns a task ID or -1 on failure.
-int select_best_task(struct TaskProfile *profile);
+int select_best_task_for_current_priorities(struct TaskProfile *profile, struct PriorityMap *priorities);
 // Create a ScheduleResult structure for the specified number of cores. Returns NULL on failure.
 struct ScheduleResult *create_schedule_result(int core_count);
 // Update the result schedule with a task assignment.
