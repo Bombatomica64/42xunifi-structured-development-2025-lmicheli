@@ -39,7 +39,7 @@ int mystrcat(char *dest, const char *src)
 	return 0;
 }
 
-int compute_total_size(FSNode *node)
+int compute_total_size(const FSNode *node)
 {
 	if (!node)
 		return 0;
@@ -84,24 +84,24 @@ void print_tree(const FSNode *node, const char *prefix, bool is_last, int indent
 	}
 	printf("\n");
 
-    if (node->type == DIRECTORY && node->children)
-    {
-        char new_prefix[256];
-        new_prefix[0] = '\0';
-        if (prefix)
-            mystrcpy(new_prefix, prefix);
+	if (node->type == DIRECTORY && node->children)
+	{
+		char new_prefix[256];
+		new_prefix[0] = '\0';
+		if (prefix)
+			mystrcpy(new_prefix, prefix);
 
-        if (is_last)
-            mystrcat(new_prefix, "     ");
-        else
-            mystrcat(new_prefix, "│    ");
+		if (is_last)
+			mystrcat(new_prefix, "     ");
+		else
+			mystrcat(new_prefix, "│    ");
 
-        for (int i = 0; i < node->childCount; i++)
-        {
-            bool child_is_last = (i == node->childCount - 1);
-            print_tree(node->children[i], new_prefix, child_is_last, indent);
-        }
-    }
+		for (int i = 0; i < node->childCount; i++)
+		{
+			bool child_is_last = (i == node->childCount - 1);
+			print_tree(node->children[i], new_prefix, child_is_last, indent);
+		}
+	}
 }
 
 void print_structure(const FSNode *root, int indent)

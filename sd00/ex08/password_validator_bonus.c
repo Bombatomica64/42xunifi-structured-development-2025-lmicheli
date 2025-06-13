@@ -20,7 +20,7 @@ int getSize(PasswordHistory *self)
 	return size;
 }
 
-PwStatus checkSimilar(char *new, char *old)
+PwStatus checkSimilar(const char *new, const char *old)
 {
 	if (!new || !old)
 		return VALID;
@@ -28,7 +28,6 @@ PwStatus checkSimilar(char *new, char *old)
 	int difok = 0;
 	int len_new = mystrlen(new);
 	int len_old = mystrlen(old);
-
 
 	if (len_new > len_old + 2 || len_new < len_old - 2)
 		return VALID;
@@ -39,7 +38,7 @@ PwStatus checkSimilar(char *new, char *old)
 		if (old[i] != new[i])
 			difok++;
 	}
-	
+
 	int length_diff = (len_new > len_old) ? (len_new - len_old) : (len_old - len_new);
 	difok += length_diff;
 
@@ -70,7 +69,7 @@ char **getLastN(PasswordHistory *self, int *N)
 	return &(self->old_passwords[size - *N]);
 }
 
-void add_new_password(PasswordHistory *self, char *password)
+void add_new_password(PasswordHistory *self, const char *password)
 {
 	if (!self || !password)
 		return;
