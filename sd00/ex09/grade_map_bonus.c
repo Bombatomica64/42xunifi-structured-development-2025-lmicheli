@@ -74,12 +74,12 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
 	}
 
 	computed->resize_entries = resize_entries_impl;
-	computed->insert = insert;
+	computed->insert = &insert;
 
 	for (int i = 0; i < size; i++)
 	{
 		if (mapped_grades[i])
-			insert(computed, mapped_grades[i]);
+			computed->insert(computed, mapped_grades[i]);
 	}
 
 	return computed;
